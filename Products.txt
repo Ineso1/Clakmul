@@ -1,0 +1,5 @@
+Mouse 234.50
+USB 120.40
+MousePad 345.30
+TvOLED 1789.90
+Teclado 2345.60
