@@ -7,11 +7,13 @@ using namespace std;
 Billing::Billing(){
     cardNumber = "0000000000000000";
     address = "avenida xxxx";
+    ccv = "000";
 }
 
-Billing::Billing(string _cardNumber, string _address){
+Billing::Billing(string _cardNumber, string _address, string _ccv){
     cardNumber = _cardNumber;
     address = _address;    
+    ccv = _ccv;
 }
 
 string Billing::getAddress()const{
@@ -23,6 +25,10 @@ string Billing::getCardNumber()const{
     return cardNumber;
 }
 
+string Billing::getCcv()const{
+    return ccv;
+}
+
 void Billing::setAddress(string _address){
     address = _address;
 }
@@ -31,6 +37,9 @@ void Billing::setCardNumber(string _cardNumber){
     cardNumber = _cardNumber;
 }
 
+void Billing::setCcv(string _ccv){
+    ccv = _ccv;
+}
 
 void Billing::billingPrint(){
     cout << "Impresion de Factturación\n";

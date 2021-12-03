@@ -11,12 +11,13 @@ User::User(){
  
 }
 
-User::User(string _name, int _age,string _email, string _address, string _cardNumber){
+User::User(string _name, int _age,string _email, string _address, string _cardNumber, string _ccv){
     name = _name;
     age = _age;
     email = _email;
-    billing.setAddress(_address);
     billing.setCardNumber(_cardNumber);
+    billing.setAddress(_address);
+    billing.setCcv(_ccv);
 }
 
 
@@ -34,7 +35,17 @@ string User::getEmail()const{
     return email;
 }
 
+Billing User::getBilling()const{
+    return billing;
+    }
+
 //Seccion de Setters 
+
+void User::setBilling(string _cardNumber, string _address, string _ccv){
+    billing.setCardNumber(_cardNumber);
+    billing.setAddress(_address);
+    billing.setCcv(_ccv);
+}
 
 void User::setName(string _name){
     name = _name;
