@@ -1,6 +1,7 @@
 #ifndef SHOPPINGCART_H
 #define SHOPPINGCART_H
 #include "Product.h"
+//Benjamin Gutierrez
 static const int MAX = 25;
 class ShoppingCart{
     private:

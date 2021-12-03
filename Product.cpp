@@ -1,7 +1,7 @@
 #include "Product.h"
 #include <iostream>
 using namespace std;
-
+//Ines Alejandro
 Product::Product(){
     name = "default";
     price = 0.0;

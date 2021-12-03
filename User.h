@@ -2,7 +2,7 @@
 #define USER_H
 #include <string>
 #include "Billing.h"
-
+//Benjamin Gutierrez
     class User{
 
         private:

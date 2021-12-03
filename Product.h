@@ -1,6 +1,7 @@
 #ifndef PRODUCT_H
 #define PRODUCT_H
 #include <string>
+//Ines Alejandro
 class Product{
     private:
         std::string name;

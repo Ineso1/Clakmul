@@ -10,7 +10,12 @@
 #include <ctime>
 using namespace std;
 
-//Declaracion de variables globales y arreglos para precargar datos
+//Link para acceso a Github:
+//https://github.com/Ineso1/Clakmul.git
+
+                                                                        //Ines Alejandro
+
+//Declaracion de variables globales y arreglos para cargar datos a las matrices declaradas
 const int MAXPROD = 20;
 const int MAXUSER = 15;
 Product catalogo[MAXPROD];
@@ -18,8 +23,8 @@ User users[MAXUSER];
 //ShoppingCart miCarrito;
 int cuantos = 0;
 int id = 0;
-
-//Cargar datos a catalogo de productos 
+                                                                        //Ines Alejandro
+//Cargar datos a catalogo de productos                                  
 void llenarCatalogo(Product prod[], int &cantProductos){
     float precio;
     string nombre;
@@ -31,8 +36,8 @@ void llenarCatalogo(Product prod[], int &cantProductos){
         cantProductos++;
     }
     archivo.close();
-}
-//Cargar lista de usuarios y construir el objeto con datos de usuario 
+}                                                                       //Ines Alejandro
+//Cargar lista de usuarios y construir el objeto con datos de los usuarios    
 void llenarListaUsuarios(User users[], int &cantUsuarios){
     char delimitador = ',';
     string linea;
@@ -58,7 +63,7 @@ void llenarListaUsuarios(User users[], int &cantUsuarios){
     }
     archivo.close();
 }
-
+                                                                        //Benjamin Gutierrez
 //Impresion de todos los productos 
 void imprimeCatalogo(Product prod[], int cantProductos){
     for (int i = 0; i < cantProductos; i ++){
@@ -67,8 +72,8 @@ void imprimeCatalogo(Product prod[], int cantProductos){
         cout << endl;
     }
 }
-
-//Cargar lista de pedidos 
+                                                                        //Ines Alejandro
+//Cargar lista de pedidos  (generar nuevo objeto shoppin cart para remplazar)
 ShoppingCart llenarCarrito(Product cat[], int cantProductos){
     int respuesta = 1;
     int numeroProducto;
@@ -87,7 +92,7 @@ ShoppingCart llenarCarrito(Product cat[], int cantProductos){
     }
     return nuevo;
 }
-
+                                                                        //Ines Alejandro
 //Funcion de validacion de usuario ingresado
 void Login(int &id){
     llenarListaUsuarios(users,cuantos);
@@ -115,8 +120,8 @@ void Login(int &id){
     system("pause");
     }
 }
-
-//Lista de productos tecnologia
+                                                                        //Benjamin Gutierrez
+//Lista de productos tecnologia en rango correspondiente
 void tech(Product prod[]){
     cout << "\n"; 
     for (int i = 0; i < 5; i ++){
@@ -125,8 +130,8 @@ void tech(Product prod[]){
         cout << endl;
     }
 }
-
-//Lista de productos deportes
+                                                                        //Benjamin Gutierrez
+//Lista de productos deportes en rango correspondiente
 void sports(Product prod[]){
     cout << "\n"; 
     for (int i = 5; i < 10; i ++){
@@ -135,8 +140,8 @@ void sports(Product prod[]){
         cout << endl;
     }
 }
-
-//Lista de productos belleza
+                                                                        //Benjamin Gutierrez
+//Lista de productos bellezaen rango correspondiente
 void beauty(Product prod[]){
     cout << "\n"; 
     for (int i = 10; i < 15; i ++){
@@ -145,8 +150,8 @@ void beauty(Product prod[]){
         cout << endl;
     }
 }
-
-//Lista de productos mascotas
+                                                                        //Benjamin Gutierrez
+//Lista de productos mascotas en rango correspondiente
 void pets(Product prod[]){
     cout << "\n"; 
     for (int i = 15; i < 20; i ++){
@@ -155,7 +160,7 @@ void pets(Product prod[]){
         cout << endl;
     }
 }
-
+                                                                        //Benjamin Gutierrez//InesAlejandro
 //Menu principal
 void menu(){
     system("cls");
@@ -163,7 +168,7 @@ void menu(){
     cout << "---------------Calakmul eSHOP---------------\n" << endl;
     cout << "\t1-Tecnologia\n\t2.Mascotas\n\t3.Belleza\n\t4.Deportes\n\t5.Catalogo Comopleto\n\t6.Mi cuenta\n\t7.Salir" <<endl;
 }
-
+                                                                        //Ines Alejandro
 //Funcion para hacer la compra mediante el  catalogo
 void ProcesoCompra(Product prod[]){
     ShoppingCart miCarrito;
@@ -182,7 +187,7 @@ void ProcesoCompra(Product prod[]){
     
 }
 
-
+                                                                        //Ines ALejandro//Benjamin Gutierrez
 //Programa principal
 int main()
 {   
@@ -244,8 +249,6 @@ int main()
         menu();
     } 
     
-
- 
     system("pause");
     return 0;
 

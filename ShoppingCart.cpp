@@ -1,7 +1,7 @@
 #include "ShoppingCart.h"
 #include <iostream>
 using namespace std;
-
+//Benjamin Gutierrez
 ShoppingCart::ShoppingCart(){
     amountProduct = 0;
 }
