@@ -42,7 +42,7 @@ void Billing::setCcv(string _ccv){
 }
 
 void Billing::billingPrint(){
-    cout << "Impresion de Factturación\n";
-    cout << "Direccion: " << address;
-    cout << "Número de tarjeta: **** **** **** " << cardNumber[12] << cardNumber[13] << cardNumber[14] << cardNumber[15] << endl;
+    cout << "Impresion de Factturacion\n";
+    cout << "\nDireccion: " << address;
+    cout << "\nNúmero de tarjeta: **** **** **** " << cardNumber[12] << cardNumber[13] << cardNumber[14] << cardNumber[15] << endl;
 }

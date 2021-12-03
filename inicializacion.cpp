@@ -15,34 +15,34 @@ const int MAXPROD = 20;
 const int MAXUSER = 15;
 Product catalogo[MAXPROD];
 User users[MAXUSER];
+//ShoppingCart miCarrito;
 int cuantos = 0;
 int id = 0;
 
 //Cargar datos a catalogo de productos 
-void llenarCatalogo(Product prod[], int &cant){
+void llenarCatalogo(Product prod[], int &cantProductos){
     float precio;
     string nombre;
     ifstream archivo;
     archivo.open("Products.txt");
     while(archivo >> nombre >> precio){
-        prod[cant].setName(nombre);
-        prod[cant].setPrice(precio);
-        cant++;
+        prod[cantProductos].setName(nombre);
+        prod[cantProductos].setPrice(precio);
+        cantProductos++;
     }
     archivo.close();
 }
 //Cargar lista de usuarios y construir el objeto con datos de usuario 
-void llenarListaUsuarios(User users[], int &cant){
+void llenarListaUsuarios(User users[], int &cantUsuarios){
     char delimitador = ',';
     string linea;
-    string name,email,cardNumber,address,ccv;
-    int age;
+    string name,email,cardNumber,address,ccv,age;
     ifstream archivo("Users.txt");
     //archivo.open("Users.txt");
     while(getline(archivo, linea)){
         stringstream stream (linea);
         getline(stream, name, delimitador);
-        //getline(stream, age, delimitador);
+        getline(stream, age, delimitador);
         getline(stream, email, delimitador);
         getline(stream, cardNumber, delimitador);
         getline(stream, address, delimitador);
@@ -50,20 +50,18 @@ void llenarListaUsuarios(User users[], int &cant){
         
         //Formato de llenado
         //name >> age >> email >> cardNumber >> address >> ccv
-        users[cant].setName(name);
-        //users[cant].setAge(age);
-        users[cant].setEmail(email);
-        users[cant].getBilling().setCardNumber(cardNumber);
-        users[cant].getBilling().setAddress(address);
-        users[cant].getBilling().setCcv(ccv);
-        cant++;
+        users[cantUsuarios].setName(name);
+        users[cantUsuarios].setAge(age);
+        users[cantUsuarios].setEmail(email);
+        users[cantUsuarios].setBilling(cardNumber,address,ccv);
+        cantUsuarios++;
     }
     archivo.close();
 }
 
 //Impresion de todos los productos 
-void imprimeCatalogo(Product prod[], int cant){
-    for (int i = 0; i < cant; i ++){
+void imprimeCatalogo(Product prod[], int cantProductos){
+    for (int i = 0; i < cantProductos; i ++){
         cout << i + 1 << ". ";
         prod[i].printProduct();
         cout << endl;
@@ -71,14 +69,14 @@ void imprimeCatalogo(Product prod[], int cant){
 }
 
 //Cargar lista de pedidos 
-ShoppingCart llenarCarrito(Product cat[], int cant){
+ShoppingCart llenarCarrito(Product cat[], int cantProductos){
     int respuesta = 1;
     int numeroProducto;
     int cantidad;
     ShoppingCart nuevo;
     while (respuesta == 1 && nuevo.getAmountProduct() < 3){
         cout << "Catalogo de productos" << endl;
-        imprimeCatalogo(cat, cant);
+        imprimeCatalogo(cat, cantProductos);
         cout << "Numero de producto a comprar: ";
         cin >> numeroProducto;
         cout << "Cantidad: ";
@@ -106,12 +104,13 @@ void Login(int &id){
         }
     }
     if (id != 0){    
-        cout << "\nBienvenido "<< users[id-1].getName();
+        cout << "\nBienvenido "<< users[id-1].getName() << endl << endl;
         system("pause");
         break;
         }
     else{
-        cout << "No hay cuenta creada como " << userLogin << " vuelve a ingresar otro nombre de usuario\n";
+        cout << "No hay cuenta creada como " << userLogin << " vuelve a ingresar otro nombre de usuario\n"<<endl;
+ 
         }
     system("pause");
     }
@@ -119,24 +118,42 @@ void Login(int &id){
 
 //Lista de productos tecnologia
 void tech(Product prod[]){
-    for (int i = 0; i < 4; i ++){
+    cout << "\n"; 
+    for (int i = 0; i < 5; i ++){
         cout << i + 1 << ". ";
         prod[i].printProduct();
         cout << endl;
     }
 }
 
-
-void sports(){
-
+//Lista de productos deportes
+void sports(Product prod[]){
+    cout << "\n"; 
+    for (int i = 5; i < 10; i ++){
+        cout << i + 1 << ". ";
+        prod[i].printProduct();
+        cout << endl;
+    }
 }
 
-void beauty(){
-
+//Lista de productos belleza
+void beauty(Product prod[]){
+    cout << "\n"; 
+    for (int i = 10; i < 15; i ++){
+        cout << i + 1 << ". ";
+        prod[i].printProduct();
+        cout << endl;
+    }
 }
 
-void pets(){
-    
+//Lista de productos mascotas
+void pets(Product prod[]){
+    cout << "\n"; 
+    for (int i = 15; i < 20; i ++){
+        cout << i + 1 << ". ";
+        prod[i].printProduct();
+        cout << endl;
+    }
 }
 
 //Menu principal
@@ -144,13 +161,25 @@ void menu(){
     system("cls");
     system("clc");
     cout << "---------------Calakmul eSHOP---------------\n" << endl;
-    cout << "\t1-Tecnologia\n\t2.Mascotas\n\t3.Belleza\n\t4.Deportes\n\t5.Mi cuenta\n\t6.Salir" <<endl;
-    /*
-    llenarCatalogo(catalogo, cuantos);
-    llenarListaUsuarios(users,cuantos);
-    imprimeCatalogo(catalogo, cuantos);
-    */
+    cout << "\t1-Tecnologia\n\t2.Mascotas\n\t3.Belleza\n\t4.Deportes\n\t5.Catalogo Comopleto\n\t6.Mi cuenta\n\t7.Salir" <<endl;
+}
 
+//Funcion para hacer la compra mediante el  catalogo
+void ProcesoCompra(Product prod[]){
+    ShoppingCart miCarrito;
+    int numProducto = 0, cantidadProductos = 0;
+    char respuesta = 's';
+    while (respuesta == 's' && miCarrito.getAmountProduct() <= 25){
+        cout << "Numero de producto a comprar: ";
+        cin >> numProducto;
+        cout << "Cantidad: ";
+        cin >> cantidadProductos;
+        miCarrito.addProduct(prod[numProducto - 1 ], cantidadProductos);
+        cout << "¿Quieres agregar otro producto? s/n: ";
+        cin >> respuesta;
+    }
+    miCarrito.printTicket();
+    
 }
 
 
@@ -158,30 +187,45 @@ void menu(){
 int main()
 {   
     Login(id);
+    cuantos = 0;
     menu();
     llenarCatalogo(catalogo,cuantos);
+    //imprimeCatalogo(catalogo,cuantos);
     int option = 0;
-    while (option != 6){
+    while (option != 7){
         cout << "Ingrese la opcion que desea: ";
         cin >> option;
         switch (option){
             case 1:
                 cout << "----------------------CATALOGO DE TECNOLOGIA----------------------";
                 tech(catalogo);
+                ProcesoCompra(catalogo);
                 break;
             case 2:
                 cout << "----------------------CATALOGO DE MASCOTAS----------------------";
+                pets(catalogo);
+                ProcesoCompra(catalogo);
                 break;
             case 3:
                 cout << "----------------------CATALOGO DE BELLEZA----------------------";
+                beauty(catalogo);
+                ProcesoCompra(catalogo);
                 break;
             case 4:
                 cout << "----------------------CATALOGO DE DEPORTES----------------------";
+                sports(catalogo);
+                ProcesoCompra(catalogo);
                 break;
             case 5:
-                cout << "----------------------MI CUENTA----------------------";
+                cout << "----------------------CATALOGO DE COMPLETO----------------------\n";
+                imprimeCatalogo(catalogo,cuantos);
+                ProcesoCompra(catalogo);
                 break;
             case 6:
+                cout << "----------------------MI CUENTA----------------------\n";
+                users[id-1].PrintUser();
+                break;
+            case 7:
                 cout << "Nos vemos " << users[id-1].getName() << endl;
                 cout << "Hora de cierre se seción: ";
                 time_t current_time;
@@ -196,18 +240,13 @@ int main()
                 cout << "Ups! Hubo un erro en su ingreso de opcion, por favor, ¡intentelo de nuevo!";
                 break;
         }
+        system("pause");
+        menu();
     } 
     
 
-    /*Product catalogo[MAXPROD];
-    int cuantos = 0;
-    ShoppingCart miCarrito;
-    llenarCatalogo(catalogo, cuantos);
-    imprimeCatalogo(catalogo, cuantos);
-    miCarrito = llenarCarrito(catalogo, cuantos);
-    miCarrito.printTicket();*/
+ 
     system("pause");
     return 0;
 
 }
-

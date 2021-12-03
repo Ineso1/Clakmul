@@ -6,12 +6,12 @@ using namespace std;
 
 User::User(){
     name = "Default";
-    age = 1;
+    age = "1";
     email = "someone@email.com";
  
 }
 
-User::User(string _name, int _age,string _email, string _address, string _cardNumber, string _ccv){
+User::User(string _name, string _age,string _email, string _address, string _cardNumber, string _ccv){
     name = _name;
     age = _age;
     email = _email;
@@ -27,7 +27,7 @@ string User::getName()const{
     return name;
 }
 
-int User::getAge()const{
+string User::getAge()const{
     return age;
 }
 
@@ -51,7 +51,7 @@ void User::setName(string _name){
     name = _name;
 }
 
-void User::setAge(int _age){
+void User::setAge(string _age){
     age= _age;
 }
 
